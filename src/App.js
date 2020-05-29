@@ -7,6 +7,7 @@ import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import AddArticle from './components/Article/AddArticle';
 import ArticleList from './components/Article/ArticleList';
+import ArticleDetails from './components/Article/ArticleDetails';
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
         <Route path="/" exact component={Home}></Route>
         <Route path="/signin" exact component={Signin}></Route>
         <Route path="/signup" component={Signup}></Route>
-        <Route path="/articles" component={ArticleList}></Route>
-        <Route path="/new-article" component={AddArticle}></Route>
+        <Route path="/articles" exact component={ArticleList}></Route>
+        <Route path="/new-article" exact component={AddArticle}></Route>
+        <Route path="/articles/:slug" component={ArticleDetails}></Route>
       </Switch>
     </div>
   );

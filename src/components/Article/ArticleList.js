@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as ArticleActions from '../../redux/actions/articleActions';
+import ListGroup from 'react-bootstrap/ListGroup';
+import {Link} from 'react-router-dom';
 
 class ArticleList extends React.Component {
     state = {
@@ -9,16 +11,23 @@ class ArticleList extends React.Component {
     };
 
     componentDidMount() {
-        this.props.getArticles();
+        this.props.getArticles("all");
     }
     
     render() {
-        const listItems = this.props.articles.map((article, index) => 
-            <div key={index}>{article.title}</div>
-        )
-        return <div>
+        const listItems = this.props.articles ? this.props.articles.map((article) =>
+            <ListGroup.Item key={article.slug}>
+                <h6>{article.author.username}</h6>
+                <span>{article.createdAt}</span>
+                <Link to={`/articles/${article.slug}`}>
+                    <h4>{article.title}</h4>
+                    <p>{article.description}</p>
+                </Link>
+            </ListGroup.Item>
+        ): "no data"
+        return <ListGroup variant="flush">
             {listItems}
-        </div>
+        </ListGroup>
     }
 }
 
@@ -27,15 +36,16 @@ ArticleList.propTypes = {
 }
 
 function mapStateToProps(state) {
-    console.log(state); //todo - state is getting called 3 times here for each connct component, use Reselect here to avoid that
+    let articles = [];
+    state.articles.allSlugs.forEach((slug) => articles.push(state.articles.bySlug[slug])) ;
     return {
-        articles: state.articles   
+        articles: articles
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getArticles: () => dispatch(ArticleActions.getArticles()),
+        getArticles: () => dispatch(ArticleActions.getArticles("all")),
     }
 }
 
