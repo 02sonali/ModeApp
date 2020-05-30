@@ -14,3 +14,12 @@ export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const GET_COMMENTS = "GET_COMMENTS";
 export const SET_COMMENTS = "SET_COMMENTS";
+
+/* User Actions */
+export const REGISTER_USER_START = "REGISTER_USER_START";
+export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
+export const REGISTER_USER_FAIL = "REGISTER_USER_FAIL";
+export const AUTH_START = "AUTH_START";
+export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const AUTH_FAIL = "AUTH_FAIL";
+export const AUTH_LOGOUT = "AUTH_LOGOUT";
