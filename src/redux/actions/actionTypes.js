@@ -1,5 +1,6 @@
 /* Article Actions */
 export const ADD_ARTICLE = "ADD_ARTICLE";
+export const SET_NEW_ARTICLE = "SET_NEW_ARTICLE";
 export const EDIT_ARTICLE = "EDIT_ARTICLE";
 export const DELETE_ARTICLE = "DELETE_ARTICLE";
 export const GET_ARTICLES = "GET_ARTICLES";

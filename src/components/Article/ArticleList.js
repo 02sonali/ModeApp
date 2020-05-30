@@ -25,7 +25,7 @@ class ArticleList extends React.Component {
                 </Link>
             </ListGroup.Item>
         ): "no data"
-        return <ListGroup variant="flush">
+        return <ListGroup variant="flush" className="container p-4">
             {listItems}
         </ListGroup>
     }

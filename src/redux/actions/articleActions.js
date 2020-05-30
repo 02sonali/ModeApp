@@ -20,6 +20,10 @@ export function createArticle(article) {
     return {type: types.ADD_ARTICLE, article: article};
 }
 
+export function setNewArticle(article) {
+    return {type: types.SET_NEW_ARTICLE, article: article};
+}
+
 export function editArticle(id) {
     return {type: types.EDIT_ARTICLE, id:id};
 }

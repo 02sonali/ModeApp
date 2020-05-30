@@ -1,4 +1,4 @@
-import { takeLatest, put} from 'redux-saga/effects';
+import { takeLatest, put, call, take} from 'redux-saga/effects';
 import * as types  from '../actions/actionTypes';
 
 function* fetchArticles(filter) {
@@ -25,6 +25,26 @@ function* fetchArticleDetails(action) {
     }
 }
 
+function* addArticle(action) {
+    const article = {article: action.article};
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(article)
+    };
+    try {
+        const response = yield fetch(`https://conduit.productionready.io/api/articles`, requestOptions)
+        .then(response => response.json(), );    
+        yield put({ type: types.SET_NEW_ARTICLE, article: response.article});
+    } catch (e) {
+        console.log(e);
+        return;
+    }
+}
+
+export function* createArticle(article) {
+    yield takeLatest(types.ADD_ARTICLE, addArticle);
+}
 
 export function* getArticles(filter) {
   yield takeLatest(types.GET_ARTICLES, fetchArticles);

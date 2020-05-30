@@ -15,7 +15,7 @@ export const ArticleDetails = () => {
     const article = useSelector(
         state => state.articles.bySlug
     )
-    return <div>
+    return <div className="conatiner p-4">
         <div className="article-header">
             <h2>{article.title}</h2>
             <p>{article.description}</p>

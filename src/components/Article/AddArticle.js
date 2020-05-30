@@ -3,7 +3,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {useFormik} from 'formik';
 import * as yup from 'yup';
-
+import {connect, useDispatch, useSelector} from 'react-redux';
+import {createArticle} from '../../redux/actions/articleActions';
 export const AddArticle = () => {
     /* payload - {"article":{"title":"sonali test","description":"My first article","body":"hello, this  is my first article","tagList":[]}}
         api - https://conduit.productionready.io/api/articles
@@ -13,7 +14,11 @@ export const AddArticle = () => {
     //     // body: yup.string().required()
     // });
   
-    
+    const dispatch = useDispatch();
+    const article = useSelector(
+        state => state.articles.bySlug
+    )
+    console.log(article)
     const formik = useFormik({
         // validationSchema: {schema},
         initialValues: {
@@ -24,11 +29,12 @@ export const AddArticle = () => {
         },
         onSubmit: (values) => {
             console.log('form submission complete!!', values);
+            dispatch(createArticle(values));
         }
     })
         
     return (
-        <Form noValidate onSubmit={formik.handleSubmit}>
+        <Form noValidate onSubmit={formik.handleSubmit} className="container p-4">
             <Form.Group controlId="title">
                 <Form.Control type="text" placeholder="Article Title" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.title} />
                 {/* <Form.Text className="text-muted">
@@ -52,4 +58,4 @@ export const AddArticle = () => {
  
 }
 
-export default AddArticle;
+export default connect()(AddArticle);

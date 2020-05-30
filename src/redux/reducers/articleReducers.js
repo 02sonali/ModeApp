@@ -5,7 +5,11 @@ const bySlug = (state = {}, action) => {
     switch (action.type) {
       case types.ADD_ARTICLE:
       case types.EDIT_ARTICLE:
-        return {...state}; //TODO
+        return {...state};
+      case types.SET_NEW_ARTICLE:
+        let articleObj = {};
+        articleObj[action.article.slug] = action.article;
+        return {...state, ...articleObj};
       case types.SET_ARTICLES:
         let newObj = {};
         let newState;
@@ -25,6 +29,8 @@ const allSlugs = (state = [], action) => {
   switch (action.type) {
     case types.ADD_ARTICLE:
       return [...state, action.article];
+    case types.SET_NEW_ARTICLE:
+      return [...state, action.article.slug];
     case types.SET_ARTICLES:
       let newState = [];
       action.articles.forEach(article => {
