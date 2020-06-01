@@ -4,14 +4,10 @@ import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
 import {useFormik} from 'formik';
 import {connect, useDispatch, useSelector} from 'react-redux';
-import { registerUser } from '../redux/actions/userActions';
+import { registerUserStart } from '../redux/actions/userActions';
 
 export const Signup = () => {
     const dispatch = useDispatch();
-    const user = useSelector(
-        state => state.user
-    )
-    console.log(user)
     const formik = useFormik({
         // validationSchema: {schema},
         initialValues: {
@@ -21,7 +17,7 @@ export const Signup = () => {
         },
         onSubmit: (values) => {
             console.log('form submission complete!!', values);
-            dispatch(registerUser(values));
+            dispatch(registerUserStart(values));
         }
     })
         

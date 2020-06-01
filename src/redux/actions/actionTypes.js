@@ -22,4 +22,8 @@ export const REGISTER_USER_FAIL = "REGISTER_USER_FAIL";
 export const AUTH_START = "AUTH_START";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAIL = "AUTH_FAIL";
-export const AUTH_LOGOUT = "AUTH_LOGOUT";
+export const LOGOUT_START = "LOGOUT_START";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const CHECK_LOGGEDIN = "CHECK_LOGGEDIN";
+export const SET_LOGGEDIN = "SET_LOGGEDIN";
+

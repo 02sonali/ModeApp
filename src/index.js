@@ -8,7 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import configureStore from './redux/configureStore';
 import {Provider as ReduxProvider} from "react-redux";
 
-const store = configureStore();
+const initialState = {articles: {}, comments:[], user: {} }
+const store = configureStore(initialState); //TODO- provide initial state here
 ReactDOM.render(
   <React.StrictMode>
     <ReduxProvider store={store}>
