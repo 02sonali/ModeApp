@@ -22,8 +22,6 @@ export default function userReducer(state = INITIAL_STATE, action) {
             return {...state,  loading: false, error: action.error };
         case types.LOGOUT_SUCCESS:
             return {...state, token: null, userId: null };
-        case types.LOGOUT_SUCCESS:
-                return {...state, token: null, userId: null };
         case types.CHECK_LOGGEDIN:
             return {...state, token: null, userId: null };
         case types.SET_LOGGEDIN:

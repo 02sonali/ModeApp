@@ -13,21 +13,32 @@ class ArticleList extends React.Component {
     componentDidMount() {
         this.props.getArticles("all");
     }
+
+    getDate(dateStr) {
+        const formatDate = new Date(dateStr);
+        var months = ["Jan", "Febr", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        return `${months[formatDate.getMonth()]}  ${formatDate.getDate()},  ${formatDate.getFullYear()}`;
+    }
     
     render() {
         const listItems = this.props.articles ? this.props.articles.map((article) =>
-            <ListGroup.Item key={article.slug}>
+            <ListGroup.Item key={article.slug} className="text-left">
                 <h6>{article.author.username}</h6>
-                <span>{article.createdAt}</span>
+                <span>{this.getDate(article.createdAt)}</span>
                 <Link to={`/articles/${article.slug}`}>
-                    <h4>{article.title}</h4>
-                    <p>{article.description}</p>
+                    <div className="mt-4">
+                        <h4 className="article-title">{article.title}</h4>
+                        <p className="article-body">{article.description}</p>
+                    </div>
                 </Link>
             </ListGroup.Item>
         ): "no data"
-        return <ListGroup variant="flush" className="container p-4">
+        return <>
+        <h4 className="mt-4"> Global Feed </h4>
+        <ListGroup variant="flush" className="container p-4">
             {listItems}
         </ListGroup>
+        </>
     }
 }
 

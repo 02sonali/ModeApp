@@ -15,18 +15,23 @@ export const ArticleDetails = () => {
     const article = useSelector(
         state => state.articles.bySlug
     )
-    return <div className="container p-4">
+    const getDate = function(dateStr) {
+        const formatDate = new Date(dateStr);
+        var months = ["Jan", "Febr", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        return `${months[formatDate.getMonth()]}  ${formatDate.getDate()},  ${formatDate.getFullYear()}`;
+    } 
+    return <div className="container p-4 text-left">
         <div className="article-header">
             <h2>{article.title}</h2>
             <p>{article.description}</p>
             {/* <h6>{article.author.username}</h6> //TODO - author i.e. nested object is not copied by spread operator} */ }
-            <span>{article.createdAt}</span>
+            <span>{getDate(article.createdAt)}</span>
         </div>
         <div className="article-body">
             <p>{article.body}</p>
         </div>
         <AddComment/>
-        <CommentList/>
+        {/* <CommentList/> */}
     </div>
 }
 

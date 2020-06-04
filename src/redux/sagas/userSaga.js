@@ -1,4 +1,4 @@
-import { REGISTER_USER_START, CHECK_LOGGEDIN } from "../actions/actionTypes";
+import { REGISTER_USER_START, CHECK_LOGGEDIN, LOGOUT_START } from "../actions/actionTypes";
 import * as actions from '../actions/userActions';
 import { takeLatest, put} from 'redux-saga/effects';
 
@@ -20,6 +20,7 @@ function* startRegistering(action) {
             yield put(actions.authSuccess(response.user.token, response.user.id));
             yield localStorage.setItem('token', response.user.token);
             yield localStorage.setItem('userId', response.user.id);
+            //TODO - CHECK TOKEN EXPIRATION AS WELL
         }
     } catch (error) {
         yield put(actions.registerUserFailed(error));
@@ -35,6 +36,12 @@ function* checkIfLoggedIn() {
     } else {
         yield put(actions.setLoggedInUser(""));
     }
+    //TODO - CHECK TOKEN EXPIRATION AS WELL
+}
+
+function* logoutCurrentUser() {
+    localStorage.clear();
+    yield put(actions.logoutSucceed());
 }
 
 export function* registerUserStart() {
@@ -43,4 +50,8 @@ export function* registerUserStart() {
 
 export function* checkLoggedInUser() {
     yield takeLatest(CHECK_LOGGEDIN, checkIfLoggedIn);
+}
+
+export function* logout() {
+    yield takeLatest(LOGOUT_START, logoutCurrentUser);
 }
