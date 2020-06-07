@@ -12,8 +12,8 @@ export function registerUserFailed(errors) {
     return {type: types.REGISTER_USER_FAIL, errors};
 }
 
-export const authStart = () => {
-    return { type: types.AUTH_START}
+export const authStart = (user) => {
+    return { type: types.AUTH_START, user}
 };
 
 export const authSuccess = (token, userId) => {

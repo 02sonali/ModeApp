@@ -1,4 +1,4 @@
-import { REGISTER_USER_START, CHECK_LOGGEDIN, LOGOUT_START } from "../actions/actionTypes";
+import { REGISTER_USER_START, CHECK_LOGGEDIN, LOGOUT_START, AUTH_START } from "../actions/actionTypes";
 import * as actions from '../actions/userActions';
 import { takeLatest, put} from 'redux-saga/effects';
 
@@ -28,6 +28,31 @@ function* startRegistering(action) {
     }
 }
 
+function* startLogin(action) {
+    const user = {user: action.user};
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+    };
+    // yield put(actions.registerUserStart());
+    try {
+        const response = yield fetch(`https://conduit.productionready.io/api/users/login`, requestOptions)
+        .then(response => response.json());
+        if(response.errors) {
+            //error handling here
+        } else {   
+            yield put(actions.authSuccess(response.user.token, response.user.id));
+            yield localStorage.setItem('token', response.user.token);
+            yield localStorage.setItem('userId', response.user.id);
+            //TODO - CHECK TOKEN EXPIRATION AS WELL
+        }
+    } catch (error) {
+       //error handling here
+        return;
+    }
+}
+
 function* checkIfLoggedIn() {
     const token = yield localStorage.getItem('token');
     const userId = yield localStorage.getItem('userId');
@@ -46,6 +71,10 @@ function* logoutCurrentUser() {
 
 export function* registerUserStart() {
     yield takeLatest(REGISTER_USER_START, startRegistering);
+}
+
+export function* authStart() {
+    yield takeLatest(AUTH_START, startLogin);
 }
 
 export function* checkLoggedInUser() {

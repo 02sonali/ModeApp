@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
 import {useFormik} from 'formik';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import { registerUserStart } from '../redux/actions/userActions';
 
 export const Signup = () => {
@@ -48,4 +48,4 @@ export const Signup = () => {
    </div>)
 }
 
-export default connect()(Signup);
+export default Signup;

@@ -25,7 +25,7 @@ export const AddArticle = () => {
             title: '',
             description: '',
             body: '',
-            tagList: []
+            // tagList: []
         },
         onSubmit: (values) => {
             console.log('form submission complete!!', values);
@@ -47,9 +47,9 @@ export const AddArticle = () => {
             <Form.Group controlId="body">
                 <Form.Control as="textarea" rows="5" placeholder="Write your article (in markdown)" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.body}/>
             </Form.Group>
-            <Form.Group controlId="tagList">
+            {/* <Form.Group controlId="tagList">
                 <Form.Control type="text" placeholder="Enter tags" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.tagList} />
-            </Form.Group>
+            </Form.Group> */}
             <Button variant="primary" type="submit">
                 Publish Article
             </Button>

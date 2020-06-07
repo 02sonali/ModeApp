@@ -21,9 +21,9 @@ class Header extends React.Component {
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand href="/" className="mr-auto">Mode</Navbar.Brand>
           <Nav>
-            <Nav.Link href="#" onClick={() => this.logout()}>Logout</Nav.Link>
             <Nav.Link href="/articles">Articles</Nav.Link>
             <Nav.Link href="/new-article">New Article</Nav.Link>
+            <Nav.Link href="#" onClick={() => this.logout()}>Logout</Nav.Link>
           </Nav>
         </Navbar> 
         :
