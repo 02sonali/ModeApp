@@ -9,7 +9,7 @@ import configureStore from './redux/configureStore';
 import {Provider as ReduxProvider} from "react-redux";
 
 const initialState = {articles: {}, comments:[], user: {} }
-const store = configureStore(initialState); //TODO- provide initial state here
+const store = configureStore(initialState);
 ReactDOM.render(
   <React.StrictMode>
     <ReduxProvider store={store}>
