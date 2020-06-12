@@ -30,7 +30,9 @@ export const ArticleDetails = () => {
         <div className="article-body">
             <p>{article.body}</p>
         </div>
-        <AddComment/>
+        <AddComment>
+            {/* <div> Comment text here </div> */}
+        </AddComment>
         {/* <CommentList/> */}
     </div>
 }

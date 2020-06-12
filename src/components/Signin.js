@@ -1,13 +1,15 @@
 import React from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {useFormik} from 'formik';
-import {useDispatch} from 'react-redux';
+import {compose} from 'redux';
+import {useDispatch, connect} from 'react-redux';
 import { authStart } from '../redux/actions/userActions';
 
-export const Signin = () => {
+export const Signin = (props) => {
     const dispatch = useDispatch();
+   
     const formik = useFormik({
         // validationSchema: {schema},
         initialValues: {
@@ -17,6 +19,7 @@ export const Signin = () => {
         onSubmit: (values) => {
             console.log('form submission complete!!', values);
             dispatch(authStart(values));
+            
         }
     })
     return <div className="container p-4">
@@ -38,5 +41,12 @@ export const Signin = () => {
         </Form>
    </div>
 }
-
-export default Signin;
+const mapStateToProps = function(state, ownProps){
+    if(state.user.userId) {
+        ownProps.history.push('/articles');
+    }
+}
+export default compose(
+    withRouter,
+    connect(mapStateToProps)
+)(Signin);

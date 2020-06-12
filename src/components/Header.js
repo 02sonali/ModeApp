@@ -2,16 +2,18 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import {connect} from 'react-redux';
+import {withRouter} from "react-router-dom";
 import * as actions from '../redux/actions/userActions';
-import {bindActionCreators} from 'redux';
-class Header extends React.Component {
+import {bindActionCreators, compose} from 'redux';
 
+class Header extends React.Component {
   componentDidMount() {
     this.props.getLoginStatus();
   }
 
   logout() {
     this.props.logout();
+    this.props.history.push('/');
   }
 
   render() {
@@ -53,4 +55,6 @@ const mapDispatchToProps = function (dispatch) {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default compose(
+  withRouter, connect(mapStateToProps, mapDispatchToProps)
+)(Header);

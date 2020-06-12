@@ -31,8 +31,3 @@ export const setLoggedInUser = (userId) => {
 export const logout = () => {
     return {type: types.LOGOUT_START}
 };
-
-export const logoutSucceed = () => {
-    return {type: types.LOGOUT_SUCCESS}
-};
-

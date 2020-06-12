@@ -66,7 +66,7 @@ function* checkIfLoggedIn() {
 
 function* logoutCurrentUser() {
     localStorage.clear();
-    yield put(actions.logoutSucceed());
+    yield put(actions.setLoggedInUser(""));
 }
 
 export function* registerUserStart() {

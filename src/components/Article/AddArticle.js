@@ -18,7 +18,6 @@ export const AddArticle = () => {
     const article = useSelector(
         state => state.articles.bySlug
     )
-    console.log(article)
     const formik = useFormik({
         // validationSchema: {schema},
         initialValues: {
@@ -28,7 +27,6 @@ export const AddArticle = () => {
             // tagList: []
         },
         onSubmit: (values) => {
-            console.log('form submission complete!!', values);
             dispatch(createArticle(values));
         }
     })
