@@ -2,20 +2,17 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import {connect} from 'react-redux';
-// import {withRouter} from "react-router-dom";
 import * as actions from '../redux/actions/userActions';
-import {bindActionCreators, compose} from 'redux';
+import {bindActionCreators} from 'redux';
 
-export class Header extends React.Component {
+class Header extends React.Component {
   componentDidMount() {
-    if(this.props.getLoginStatus) {
-      this.props.getLoginStatus();
-    }
+
+    this.props.getLoginStatus();
   }
 
   logout() {
     this.props.logout();
-    // this.props.history.push('/');
   }
 
   render() {
