@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sets the header component 1`] = `
+<nav
+  className="navbar navbar-expand navbar-dark bg-dark"
+>
+  <a
+    className="mr-auto navbar-brand"
+    href="/"
+  >
+    Mode
+  </a>
+  <div
+    className="navbar-nav"
+    onKeyDown={[Function]}
+  >
+    <a
+      className="nav-link"
+      data-rb-event-key="/articles"
+      href="/articles"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+    >
+      Articles
+    </a>
+    <a
+      className="nav-link"
+      data-rb-event-key="/signin"
+      href="/signin"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+    >
+      Sign in
+    </a>
+    <a
+      className="nav-link"
+      data-rb-event-key="/signup"
+      href="/signup"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+    >
+      Sign up
+    </a>
+  </div>
+</nav>
+`;
