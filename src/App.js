@@ -1,26 +1,28 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 import './App.css';
 import Header from "./components/Header";
 import {Route, Switch} from "react-router-dom";
-import Home from "./components/Home";
-import Signin from "./components/Signin";
-import Signup from "./components/Signup";
-import AddArticle from './components/Article/AddArticle';
-import ArticleList from './components/Article/ArticleList';
-import ArticleDetails from './components/Article/ArticleDetails';
+const Home = lazy(() => import("./components/Home"));
+const Signin = lazy(() => import("./components/Signin"));
+const Signup = lazy(() => import("./components/Signup"));
+const AddArticle = lazy(() => import('./components/Article/AddArticle'));
+const ArticleList = lazy(() => import('./components/Article/ArticleList'));
+const ArticleDetails = lazy(() => import('./components/Article/ArticleDetails'));
 
 function App() {
   return (
     <div className="App" >
       <Header></Header>
-      <Switch>
-        <Route path="/" exact component={Home}></Route>
-        <Route path="/signin" exact component={Signin}></Route>
-        <Route path="/signup" component={Signup}></Route>
-        <Route path="/articles" exact component={ArticleList}></Route>
-        <Route path="/new-article" exact component={AddArticle}></Route>
-        <Route path="/articles/:slug" component={ArticleDetails}></Route>
-      </Switch>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route path="/" exact component={Home}></Route>
+          <Route path="/signin" exact component={Signin}></Route>
+          <Route path="/signup" component={Signup}></Route>
+          <Route path="/articles" exact component={ArticleList}></Route>
+          <Route path="/new-article" exact component={AddArticle}></Route>
+          <Route path="/articles/:slug" component={ArticleDetails}></Route>
+        </Switch>
+      </Suspense>
     </div>
   );
 }
