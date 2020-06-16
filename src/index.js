@@ -3,23 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter as Router} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import configureStore from './redux/configureStore';
-import {Provider as ReduxProvider} from "react-redux";
-import { createBrowserHistory } from "history";
-
-const initialState = {articles: {}, comments:[], user: {} }
-const store = configureStore(initialState);
-const customHistory = createBrowserHistory();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ReduxProvider store={store}>
-      <Router history={customHistory}>
-        <App />
-      </Router>
-    </ReduxProvider>
+      <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

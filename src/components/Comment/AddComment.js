@@ -2,7 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-export const AddComment = () => {
+const AddComment = () => {
     return <Form>
         <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Control as="textarea" rows="3" placeholder="Write a comment..."/>

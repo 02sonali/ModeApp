@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react';
-import AddComment from '../Comment/AddComment';
-import CommentList from '../Comment/CommentList';
+/* eslint-disable import/first */
+import React, {useEffect, lazy, Suspense} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import * as ArticleActions from '../../redux/actions/articleActions';
 import {useParams} from 'react-router-dom';
+
+const AddComment = lazy(() => import("../Comment/AddComment"));
+const CommentList = lazy(() => import("../Comment/CommentList"));
 
 export const ArticleDetails = () => {
     const dispatch = useDispatch();
@@ -30,10 +32,10 @@ export const ArticleDetails = () => {
         <div className="article-body">
             <p>{article.body}</p>
         </div>
-        <AddComment>
-            {/* <div> Comment text here </div> */}
-        </AddComment>
-        {/* <CommentList/> */}
+        <Suspense fallback={<div>Loading...</div>}>
+            <AddComment/>
+            <CommentList/>
+        </Suspense>
     </div>
 }
 
